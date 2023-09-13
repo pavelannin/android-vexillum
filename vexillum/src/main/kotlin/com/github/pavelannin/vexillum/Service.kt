@@ -1,12 +1,12 @@
-package com.github.pavelannin.feature_toggling
+package com.github.pavelannin.vexillum
 
-import com.github.pavelannin.feature_toggling.internal.DefaultFeatureTogglingService
+import com.github.pavelannin.vexillum.internal.DefaultService
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 
-interface FeatureTogglingService {
+interface Vexillum {
     fun isEnabled(feature: FeatureToggle.Static<*>): Boolean
     fun observeEnabled(feature: FeatureToggle.Dynamic<*>): StateFlow<Boolean>
     fun <Payload> payload(feature: FeatureToggle.Static<Payload>): Payload
@@ -34,11 +34,11 @@ interface FeatureTogglingService {
         operator fun invoke(
             providers: List<Provider> = emptyList(),
             dispatcher: CoroutineDispatcher = Dispatchers.Default
-        ): FeatureTogglingService = DefaultFeatureTogglingService(providers, dispatcher)
+        ): Vexillum = DefaultService(providers, dispatcher)
 
         operator fun invoke(
             vararg providers: Provider,
             dispatcher: CoroutineDispatcher = Dispatchers.Default
-        ): FeatureTogglingService = DefaultFeatureTogglingService(providers.toList(), dispatcher)
+        ): Vexillum = DefaultService(providers.toList(), dispatcher)
     }
 }

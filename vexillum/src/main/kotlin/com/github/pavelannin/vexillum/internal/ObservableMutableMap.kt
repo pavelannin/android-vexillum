@@ -1,4 +1,4 @@
-package com.github.pavelannin.feature_toggling.internal
+package com.github.pavelannin.vexillum.internal
 
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.Flow

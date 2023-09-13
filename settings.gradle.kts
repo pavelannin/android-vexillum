@@ -1,3 +1,11 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+
 @Suppress(names = ["UnstableApiUsage"])
 dependencyResolutionManagement {
     versionCatalogs {
@@ -11,14 +19,9 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-
-pluginManagement {
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
-
-rootProject.name = "Feature Toggling"
-include(":feature_toggling")
+rootProject.name = "Vexillum"
+include(
+    ":vexillum",
+    ":plugin-generator",
+//    ":sample"
+)

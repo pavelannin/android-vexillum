@@ -1,4 +1,4 @@
-package com.github.pavelannin.feature_toggling
+package com.github.pavelannin.vexillum
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.drop
@@ -15,21 +15,21 @@ internal class ServiceTest {
 
     @Test
     fun `isEnabled should return true when feature is enabled`() {
-        val service = FeatureTogglingService()
+        val service = Vexillum()
         val feature = FeatureToggle.Static(isEnabled = true)
         assertTrue(service.isEnabled(feature))
     }
 
     @Test
     fun `isEnabled should return false when feature is disabled`() {
-        val service = FeatureTogglingService()
+        val service = Vexillum()
         val feature = FeatureToggle.Static(isEnabled = false)
         assertFalse(service.isEnabled(feature))
     }
 
     @Test
     fun `payload should return the correct payload for a static feature`() {
-        val service = FeatureTogglingService()
+        val service = Vexillum()
         val feature = FeatureToggle.Static(isEnabled = false, payload = "my_key")
         assertEquals("my_key", service.payload(feature))
     }
@@ -38,11 +38,11 @@ internal class ServiceTest {
     fun `observeEnabled should observe emit provider when dynamic feature is enabled`() {
         val provider = MutableStateFlow<Boolean?>(value = null)
         val feature = FeatureToggle.Dynamic(defaultEnabled = true)
-        val service = FeatureTogglingService(
-            FeatureTogglingService.Provider {
+        val service = Vexillum(
+            Vexillum.Provider {
                 provider
                     .filterNotNull()
-                    .map { FeatureTogglingService.Provider.Result(feature, newEnabled = it) }
+                    .map { Vexillum.Provider.Result(feature, newEnabled = it) }
                     .map(::setOf)
             }
         )
@@ -64,11 +64,11 @@ internal class ServiceTest {
     fun `observePayload should emit the correct payload for a dynamic feature`() {
         val provider = MutableStateFlow<String?>(value = null)
         val feature = FeatureToggle.Dynamic(defaultEnabled = true, defaultPayload = "key_default")
-        val service = FeatureTogglingService(
-            FeatureTogglingService.Provider {
+        val service = Vexillum(
+            Vexillum.Provider {
                 provider
                     .filterNotNull()
-                    .map { FeatureTogglingService.Provider.Result(feature, newPayload = it) }
+                    .map { Vexillum.Provider.Result(feature, newPayload = it) }
                     .map(::setOf)
             }
         )

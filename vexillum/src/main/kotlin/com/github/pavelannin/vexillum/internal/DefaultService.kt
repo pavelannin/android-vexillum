@@ -1,7 +1,7 @@
-package com.github.pavelannin.feature_toggling.internal
+package com.github.pavelannin.vexillum.internal
 
-import com.github.pavelannin.feature_toggling.FeatureTogglingService
-import com.github.pavelannin.feature_toggling.FeatureToggle
+import com.github.pavelannin.vexillum.Vexillum
+import com.github.pavelannin.vexillum.FeatureToggle
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
@@ -11,20 +11,19 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import java.util.UUID
 
-internal class DefaultFeatureTogglingService(
-    providers: List<FeatureTogglingService.Provider>,
+internal class DefaultService(
+    providers: List<Vexillum.Provider>,
     dispatcher: CoroutineDispatcher
-) : FeatureTogglingService, CoroutineScope by CoroutineScope(dispatcher) {
+) : Vexillum, CoroutineScope by CoroutineScope(dispatcher) {
 
-    private val cache = ObservableMutableMap<UUID, FeatureToggle.Dynamic<*>>()
+    private val cache = ObservableMutableMap<FeatureToggle.Key, FeatureToggle.Dynamic<*>>()
 
 
     init {
         if (providers.isNotEmpty()) {
             launch {
-                providers.map(FeatureTogglingService.Provider::observe)
+                providers.map(Vexillum.Provider::observe)
                     .merge()
                     .map { list -> list.associate { it.feature.key to it.updateFeature() } }
                     .collect(cache::putAll)
@@ -50,5 +49,5 @@ internal class DefaultFeatureTogglingService(
         )
 }
 
-private fun <Payload> FeatureTogglingService.Provider.Result<Payload>.updateFeature() = this.feature
+private fun <Payload> Vexillum.Provider.Result<Payload>.updateFeature() = this.feature
     .copy(isEnabled = this.newEnabled, payload = this.newPayload)

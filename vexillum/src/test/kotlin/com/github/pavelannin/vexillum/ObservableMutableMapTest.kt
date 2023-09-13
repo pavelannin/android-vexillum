@@ -1,6 +1,6 @@
-package com.github.pavelannin.feature_toggling
+package com.github.pavelannin.vexillum
 
-import com.github.pavelannin.feature_toggling.internal.ObservableMutableMap
+import com.github.pavelannin.vexillum.internal.ObservableMutableMap
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
