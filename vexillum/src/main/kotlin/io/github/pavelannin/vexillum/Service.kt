@@ -1,6 +1,6 @@
-package com.github.pavelannin.vexillum
+package io.github.pavelannin.vexillum
 
-import com.github.pavelannin.vexillum.internal.DefaultService
+import io.github.pavelannin.vexillum.internal.DefaultService
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow

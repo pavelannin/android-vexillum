@@ -1,4 +1,4 @@
-package com.github.pavelannin.vexillum
+package io.github.pavelannin.vexillum
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.drop

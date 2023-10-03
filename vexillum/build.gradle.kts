@@ -3,7 +3,7 @@ plugins {
     alias(deps.plugins.kotlin.jvm)
 }
 
-group = "com.github.pavelannin"
+group = "io.github.pavelannin"
 version = "1.0.0"
 
 java {

@@ -1,4 +1,4 @@
-package com.github.pavelannin.vexillum
+package io.github.pavelannin.vexillum
 
 import java.util.UUID
 

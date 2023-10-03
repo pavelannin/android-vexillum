@@ -1,7 +1,7 @@
-package com.github.pavelannin.vexillum.internal
+package io.github.pavelannin.vexillum.internal
 
-import com.github.pavelannin.vexillum.Vexillum
-import com.github.pavelannin.vexillum.FeatureToggle
+import io.github.pavelannin.vexillum.Vexillum
+import io.github.pavelannin.vexillum.FeatureToggle
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
