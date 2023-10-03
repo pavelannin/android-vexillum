@@ -2,7 +2,6 @@ package com.github.pavelannin.vexillum
 
 import java.util.UUID
 
-
 sealed class FeatureToggle<Payload>(
     internal open val key: Key,
     internal open val isEnabled: Boolean,

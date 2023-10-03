@@ -37,7 +37,6 @@ internal class DefaultService(
         .map { cacheFeature -> (cacheFeature ?: feature).isEnabled }
         .stateIn(scope = this, started = SharingStarted.Eagerly, initialValue = (cache[feature.key] ?: feature).isEnabled)
 
-
     override fun <Payload> payload(feature: FeatureToggle.Static<Payload>): Payload = feature.payload
 
     override fun <Payload> observePayload(feature: FeatureToggle.Dynamic<Payload>): Flow<Payload> = cache.observe(feature.key)
