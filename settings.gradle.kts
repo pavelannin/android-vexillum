@@ -22,6 +22,5 @@ dependencyResolutionManagement {
 rootProject.name = "Vexillum"
 include(
     ":vexillum",
-    ":plugin-generator",
-//    ":sample"
+    ":gradle-plugin"
 )

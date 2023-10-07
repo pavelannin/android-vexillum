@@ -5,6 +5,7 @@ plugins {
     alias(deps.plugins.kotlin.android) apply false
     alias(deps.plugins.kotlin.jvm) apply false
     alias(deps.plugins.publish) apply true
+    alias(deps.plugins.publish.gradle.plugin) apply false
 }
 true // Needed to make the Suppress annotation work for the plugins block
 
