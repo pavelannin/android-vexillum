@@ -10,7 +10,7 @@ interface Vexillum {
     fun isEnabled(feature: FeatureToggle.Static<*>): Boolean
     fun observeEnabled(feature: FeatureToggle.Dynamic<*>): StateFlow<Boolean>
     fun <Payload> payload(feature: FeatureToggle.Static<Payload>): Payload
-    fun <Payload> observePayload(feature: FeatureToggle.Dynamic<Payload>): Flow<Payload>
+    fun <Payload> observePayload(feature: FeatureToggle.Dynamic<Payload>): StateFlow<Payload>
 
     fun interface Provider {
         fun observe(): Flow<Set<Result<*>>>

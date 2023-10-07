@@ -39,7 +39,7 @@ internal class DefaultService(
 
     override fun <Payload> payload(feature: FeatureToggle.Static<Payload>): Payload = feature.payload
 
-    override fun <Payload> observePayload(feature: FeatureToggle.Dynamic<Payload>): Flow<Payload> = cache.observe(feature.key)
+    override fun <Payload> observePayload(feature: FeatureToggle.Dynamic<Payload>): StateFlow<Payload> = cache.observe(feature.key)
         .map { cacheFeature -> feature.payloadType.cast((cacheFeature ?: feature).payload) }
         .stateIn(
             scope = this,
